@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://qycwfcexdpsq"]
+
+[ext_resource type="Script" path="res://scripts/fridge.gd" id="1_8npit"]
+[ext_resource type="Texture2D" uid="uid://ycov30spkm6i" path="res://assets/sprites/Fridge.png" id="2_i7wj6"]
+
+[node name="Fridge" type="Node2D"]
+script = ExtResource("1_8npit")
+
+[node name="FridgeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_i7wj6")

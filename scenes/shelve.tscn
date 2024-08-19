@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6o4mv4e2ionu"]
+
+[ext_resource type="Script" path="res://scripts/shelve.gd" id="1_auwg0"]
+[ext_resource type="Texture2D" uid="uid://dytwm3et73xs" path="res://assets/sprites/Shelve.png" id="2_od5ep"]
+
+[node name="Shelve" type="Node2D"]
+script = ExtResource("1_auwg0")
+
+[node name="ShelveSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_od5ep")
