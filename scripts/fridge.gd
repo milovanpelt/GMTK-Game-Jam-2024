@@ -1,8 +1,8 @@
 extends Node2D
 
 const SHELVE = preload("res://scenes/shelve.tscn")
-var shelve_amount : int =  1
-var shelve_offset : int = 25
+var shelve_amount : int =  0
+var shelve_offset : int = 15
 
 @onready var fridge_sprite = $FridgeSprite
 
@@ -24,8 +24,7 @@ func create_shelve():
 	var fridge_sprite_height = fridge_sprite.texture.get_height()
 	var fridge_sprite_bottom = (fridge_sprite.position.y + fridge_sprite_height / 2)
 	
-	for i in range(shelve_amount):
-		var shelve = SHELVE.instantiate()
-		remove_child(shelve)
-		shelve.position = Vector2(fridge_sprite.position.x, fridge_sprite_bottom - shelve_offset * i)
-		add_child(shelve)
+	var shelve = SHELVE.instantiate()
+	shelve.position = Vector2(fridge_sprite.position.x, fridge_sprite_bottom - shelve_offset * shelve_amount)
+	add_child(shelve)
+	shelve_amount += 1

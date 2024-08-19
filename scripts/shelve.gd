@@ -1,9 +1,7 @@
 extends Node2D
 const FRIDGE_FOOD = preload("res://scenes/fridge_food.tscn")
-var food_amount : int =  2
-var food_offset : int = 30
-
-var food_array = []
+var food_amount : int =  3
+var food_offset : int = 25
 
 @onready var shelve_sprite = $ShelveSprite
 
@@ -21,7 +19,7 @@ func create_food():
 
 	for i in range(food_amount):
 		var food = FRIDGE_FOOD.instantiate()
-		food_array.append(food)
-		remove_child(food)
-		food.position = Vector2(randf_range(shelve_sprite_left + food_offset * i, shelve_sprite_width - food_offset * i - 10), shelve_sprite.position.y - 10)
+		var min_food_position = shelve_sprite_left
+		var max_food_position = (shelve_sprite_width - food_offset) / 2
+		food.position = Vector2(randf_range(min_food_position, max_food_position), shelve_sprite.position.y - 10)
 		add_child(food)
