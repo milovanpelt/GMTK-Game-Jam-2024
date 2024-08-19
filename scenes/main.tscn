@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://hhxgpm7ha5by"]
+[gd_scene load_steps=3 format=3 uid="uid://hhxgpm7ha5by"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_6vob8"]
 [ext_resource type="PackedScene" uid="uid://qycwfcexdpsq" path="res://scenes/fridge.tscn" id="2_im28h"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_el4cg"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_6vob8")
@@ -12,14 +10,8 @@ script = ExtResource("1_6vob8")
 position = Vector2(-1, -8)
 zoom = Vector2(3, 3)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 90)
-shape = SubResource("WorldBoundaryShape2D_el4cg")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 8.0
 autostart = true
 
 [node name="Fridge" parent="." instance=ExtResource("2_im28h")]
