@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var move_sound = $MoveSound
 
 const SPEED = 80.0
 #const JUMP_VELOCITY = -400.0
@@ -19,6 +20,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
+		move_sound.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 

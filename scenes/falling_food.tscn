@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://chso141ku56nt"]
+[gd_scene load_steps=5 format=3 uid="uid://chso141ku56nt"]
 
 [ext_resource type="Script" path="res://scripts/falling_food.gd" id="1_xbnt8"]
 [ext_resource type="Texture2D" uid="uid://djnwqm8snj38y" path="res://assets/sprites/normal_food/Beer.png" id="2_e4nft"]
+[ext_resource type="AudioStream" uid="uid://c0vroote7o2nx" path="res://assets/audio/522111__leavidencedesign__log-wood-timber-knock-hit.wav" id="3_dsp3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gutwc"]
 size = Vector2(13, 16)
@@ -15,3 +16,7 @@ texture = ExtResource("2_e4nft")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_gutwc")
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dsp3r")
+bus = &"SFX"
