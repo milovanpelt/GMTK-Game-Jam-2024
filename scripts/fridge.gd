@@ -6,7 +6,6 @@ var shelve_offset : int = 25
 
 var shelve_array = []
 
-
 @onready var fridge_sprite = $FridgeSprite
 
 var fridge_scale_x = 0

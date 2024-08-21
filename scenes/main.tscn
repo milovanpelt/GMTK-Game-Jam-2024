@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://hhxgpm7ha5by"]
+[gd_scene load_steps=7 format=3 uid="uid://hhxgpm7ha5by"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_6vob8"]
 [ext_resource type="PackedScene" uid="uid://qycwfcexdpsq" path="res://scenes/fridge.tscn" id="2_im28h"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_6gevm"]
+[ext_resource type="FontFile" uid="uid://diqr7co8883dd" path="res://assets/fonts/PixelOperator8.ttf" id="3_ofy7p"]
+[ext_resource type="Script" path="res://scripts/WorldEnd.gd" id="5_7kcxs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nidvn"]
+distance = -274.0
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_6vob8")
@@ -11,9 +17,41 @@ position = Vector2(-1, -8)
 zoom = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 2.0
 autostart = true
 
 [node name="Fridge" parent="." instance=ExtResource("2_im28h")]
 
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_6gevm")
+
+[node name="ScoreText" type="Label" parent="GameManager"]
+offset_left = -203.0
+offset_top = -62.0
+offset_right = -101.0
+offset_bottom = -39.0
+theme_override_fonts/font = ExtResource("3_ofy7p")
+text = "Score: 0"
+
+[node name="TimeLeftText" type="Label" parent="GameManager"]
+offset_left = -249.0
+offset_top = -37.0
+offset_right = -101.0
+offset_bottom = -14.0
+theme_override_fonts/font = ExtResource("3_ofy7p")
+text = "Time Left: 0"
+
+[node name="TimeLeft" type="Timer" parent="GameManager"]
+
+[node name="WorldEnd" type="Area2D" parent="."]
+script = ExtResource("5_7kcxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEnd"]
+position = Vector2(-1, 105)
+shape = SubResource("WorldBoundaryShape2D_nidvn")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/TimeLeft" to="." method="_on_time_left_timeout"]
+[connection signal="timeout" from="GameManager/TimeLeft" to="GameManager" method="_on_time_left_timeout"]
+[connection signal="body_entered" from="WorldEnd" to="WorldEnd" method="_on_body_entered"]

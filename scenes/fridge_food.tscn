@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8lg36oi5cast"]
+[gd_scene load_steps=4 format=3 uid="uid://b8lg36oi5cast"]
 
 [ext_resource type="Texture2D" uid="uid://c2gx74kr82wiq" path="res://assets/sprites/transparent_food/trans_beer.png" id="1_jskcv"]
+[ext_resource type="Script" path="res://scripts/fridge_food.gd" id="1_vhyam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lfyb"]
 size = Vector2(12, 15)
 
 [node name="FridgeFood" type="Area2D"]
+script = ExtResource("1_vhyam")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jskcv")
@@ -13,3 +15,6 @@ texture = ExtResource("1_jskcv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4lfyb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
