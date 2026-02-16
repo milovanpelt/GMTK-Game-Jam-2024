@@ -1,6 +1,6 @@
 extends Area2D
 
-const fridge_food_data = {
+const FRIDGE_FOOD_DATA = {
 	"apple": "res://assets/sprites/transparent_food/trans_apple.png",
 	"bacon": "res://assets/sprites/transparent_food/trans_bacon.png",
 	"beer": "res://assets/sprites/transparent_food/trans_beer.png",
@@ -8,13 +8,25 @@ const fridge_food_data = {
 	"jam": "res://assets/sprites/transparent_food/trans_jam.png"
 }
 
-func create_fridge_food(pos: Vector2):
-	var random_key = fridge_food_data.keys().pick_random()
-	var random_food_item = fridge_food_data[random_key]
-	set_meta("name", random_key)
-	var random_food_texture = load(random_food_item) as Texture2D
-	get_node("Sprite2D").set_texture(random_food_texture)
-	position = pos
+func create_fridge_food(position: Vector2):
+	var food_name = get_random_food_name()
+	var food_texture = load_food_texture(food_name)
+	
+	# Setting meta, 
+	set_meta("name", food_name)
+	update_food_texture(food_texture)
+	self.position = position
+	
+func get_random_food_name() -> String:
+	return FRIDGE_FOOD_DATA.keys().pick_random()
+
+func load_food_texture(food_name: String) -> Texture2D:
+	var food_path = FRIDGE_FOOD_DATA[food_name]
+	return load(food_path) as Texture2D
+	
+func update_food_texture(texture: Texture2D):
+	var sprite_node = get_node("Sprite2D")
+	sprite_node.set_texture(texture)
 
 func _on_body_entered(body):
 	var game_manager = get_node("/root/World/GameManager")	
